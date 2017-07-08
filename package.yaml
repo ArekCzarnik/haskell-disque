@@ -1,5 +1,7 @@
 name: haskell-disque
-version: '0.1.0.0'
+version: '0.0.1.0'
+synopsis: Client library for the Disque datastore
+description: Disque is an ongoing experiment to build a distributed, in-memory, message broker.Its goal is to capture the essence of the "Redis as a jobs queue" use case, which is usually implemented using blocking list operations, and move it into an ad-hoc, self-contained, scalable, and fault tolerant design, with simple to understand properties and guarantees, but still resembling Redis in terms of simplicity, performance, and implementation as a C non-blocking networked server. This library is a Haskell client for the Disque datastore.
 category: Database
 author: Arek Czarnik
 maintainer: arekczarnik@gmail.com
@@ -10,6 +12,7 @@ extra-source-files:
 - README.md
 library:
   source-dirs: src
+  ghc-options: -Wall -fwarn-tabs
   exposed-modules:
   - Database.Disque
   dependencies:
@@ -17,17 +20,7 @@ library:
   - hedis
   - string-conversions
   - bytestring
-executables:
-  haskell-disque-exe:
-    main: Main.hs
-    source-dirs: app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - base
-    - haskell-disque
+  - transformers
 tests:
   haskell-disque-test:
     main: Spec.hs
