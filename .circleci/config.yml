@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/
+    docker:
+      - image: arekczarnik/docker-circleci-haskell
+      - image: richnorth/disque:latest
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: cache
+
+      - run: stack build --fast
+
+      - save_cache:
+          paths:
+            - ~/.stack
+          key: cache
+
+      - run: stack test --no-terminal --coverage
+      - run: stack exec -- shc --repo-token=$COVERALLS_REPO_TOKEN haskell-disque haskell-disque-test

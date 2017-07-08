@@ -1,0 +1,41 @@
+name: haskell-disque
+version: '0.1.0.0'
+category: Database
+author: Arek Czarnik
+maintainer: arekczarnik@gmail.com
+copyright: 2017 Arek Czarnik
+license: BSD3
+github: ArekCzarnik/haskell-disque
+extra-source-files:
+- README.md
+library:
+  source-dirs: src
+  exposed-modules:
+  - Database.Disque
+  dependencies:
+  - base >=4.7 && <5
+  - hedis
+  - string-conversions
+  - bytestring
+executables:
+  haskell-disque-exe:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - haskell-disque
+tests:
+  haskell-disque-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - haskell-disque
