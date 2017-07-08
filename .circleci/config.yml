@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/
+    working_directory: ~/work
     docker:
       - image: arekczarnik/docker-circleci-haskell
       - image: richnorth/disque:latest
