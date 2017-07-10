@@ -85,15 +85,9 @@ instance RedisResult Job where
       Job <$> decode x <*> decode y <*> decode z
     decode r = Left r
 
--- | Disque connection information
---
--- Use this smart constructor to override specifics
--- to your client connection
---
--- e.g.
---
+-- | Disque connection
 -- > disqueConnectInfo { connectPort = PortNumber 7712 }
---
+
 disqueConnectInfo :: ConnectInfo
 disqueConnectInfo
   = defaultConnectInfo {
